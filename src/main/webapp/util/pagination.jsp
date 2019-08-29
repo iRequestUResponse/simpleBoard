@@ -6,7 +6,7 @@
 전체 페이지 수 : pageLength
 페이지당 아이템 수 : pageSize
 링크 주소 : linkTO
-	==> "${ linkTo}?page=${ page }&pageSize=${ pageSize }"
+	==> "${ linkTo}?board_id=${ param.board_id }&page=${ page }&pageSize=${ pageSize }"
 --%>
 <style>
 .link {
@@ -34,11 +34,11 @@ a.link:hover {
 </style>
 <div class="pagination">
 <!-- pagination -->
-<c:if test="${ param.page != null && param.pageSize != null && param.pageLength != null }">
+<c:if test="${ param.page != null && param.pageLength != null }">
 	<c:choose>
 		<c:when test="${ 0 + param.page > 1 }">
-			<a class="link" href="${ param.linkTo }?page=1&pageSize=${ param.pageSize }">&lt;&lt;</a>
-			<a class="link" href="${ param.linkTo }?page=${ param.page - 1 }&pageSize=${ param.pageSize }">&lt;</a>
+			<a class="link" href="${ param.linkTo }?board_id=${ param.board_id }&page=1">&lt;&lt;</a>
+			<a class="link" href="${ param.linkTo }?board_id=${ param.board_id }&page=${ param.page - 1 }">&lt;</a>
 		</c:when>
 		<c:otherwise>
 			<span class="link">&lt;&lt;</span>
@@ -49,12 +49,12 @@ a.link:hover {
 	<c:set var="_most" value="${ param.page + 9 - (param.page + 9) % 10 }"/>
 	<c:set var="most" value="${ param.pageLength < _most ? param.pageLength : _most }"/>
 	<c:forEach var="vPage" begin="${ least }" end="${ most }">
-		<a class="link" href="${ param.linkTo }?page=${ vPage }&pageSize=${ param.pageSize }">${ vPage }</a>
+		<a class="link" href="${ param.linkTo }?board_id=${ param.board_id }&page=${ vPage }">${ vPage }</a>
 	</c:forEach>
 	<c:choose>
 		<c:when test="${ 0 + param.page < param.pageLength }">
-			<a class="link" href="${ param.linkTo }?page=${ param.page + 1 }&pageSize=${ param.pageSize }">&gt;</a>
-			<a class="link" href="${ param.linkTo }?page=${ param.pageLength }&pageSize=${ param.pageSize }">&gt;&gt;</a>
+			<a class="link" href="${ param.linkTo }?board_id=${ param.board_id }&page=${ param.page + 1 }">&gt;</a>
+			<a class="link" href="${ param.linkTo }?board_id=${ param.board_id }&page=${ param.pageLength }">&gt;&gt;</a>
 		</c:when>
 		<c:otherwise>
 			<span class="link">&gt;</span>

@@ -38,9 +38,11 @@ public class Board extends HttpServlet {
 		String __page = request.getParameter("page");
 		String __pageSize = request.getParameter("pageSize");
 		
-		if (__board_id == null) __board_id = "0";
-		if (__page == null) __page = "1";
-		if (__pageSize == null) __pageSize = "10";
+		if (__board_id == null || __board_id.equals("") || __page == null || __page.equals("")) {
+			response.sendRedirect(request.getContextPath() + "/");
+			return;
+		}
+		if (__pageSize == null || __pageSize.equals("")) __pageSize = "10";
 		
 		int board_id = Integer.parseInt(__board_id);
 		int page = Integer.parseInt(__page);
@@ -57,6 +59,7 @@ public class Board extends HttpServlet {
 		Map map = new HashMap<String, Integer>();
 		map.put("page", page);
 		map.put("pageSize", pageSize);
+		map.put("board_id", board_id);
 		List postList = postService.selectAll(map);
 		
 		request.setAttribute("postList", postList);

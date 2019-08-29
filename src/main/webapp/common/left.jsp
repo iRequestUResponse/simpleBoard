@@ -31,7 +31,7 @@
 	<a href="${ cp }/boardManagement">게시판 생성</a>
 	<ul>
 		<c:forEach var="board" items="${ boardList }">
-		<li><a href="${ cp }/board?board_id=${ board.BOARD_ID }&page=1&pageSize=10">${ board.BOARD_NAME }</a></li>
+		<li><a href="${ cp }/board?board_id=${ board.BOARD_ID }&page=1">${ board.BOARD_NAME }</a></li>
 		</c:forEach>
 	</ul>
 </aside>
