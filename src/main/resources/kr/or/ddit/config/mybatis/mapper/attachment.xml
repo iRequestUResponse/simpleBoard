@@ -10,7 +10,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="HashMap">
-		<selectKey keyProperty="att_id" resultType="int">
+		<selectKey keyProperty="att_id" resultType="int" order="BEFORE">
 			select seq_b_att.nextval from dual
 		</selectKey>
 		insert into B_ATT_FILES (att_id, att_name, att_path, post_id)

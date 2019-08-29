@@ -9,8 +9,14 @@
 		order by board_id desc
 	</select>
 	
+	<select id="selectDetail" resultType="HashMap" parameterType="int">
+		select 	*
+		from	B_BOARDS
+		where	board_id = #{board_id}
+	</select>
+	
 	<insert id="insert" parameterType="HashMap">
-		<selectKey keyProperty="board_id" resultType="int">
+		<selectKey keyProperty="board_id" resultType="int" order="BEFORE">
 			select seq_b_board.nextval from dual
 		</selectKey>
 		insert into B_BOARDS (board_id, board_name, board_use, userId, board_time)

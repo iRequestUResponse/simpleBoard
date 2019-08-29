@@ -12,7 +12,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="HashMap">
-		<selectKey keyProperty="cmt_id" resultType="int">
+		<selectKey keyProperty="cmt_id" resultType="int" order="BEFORE">
 			select seq_b_comment.nextval from dual
 		</selectKey>
 		insert into B_COMMENTS (cmt_id, cmt_cont, cmt_time, post_id, userId, cmt_del)

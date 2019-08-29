@@ -8,6 +8,7 @@ public interface IPostService {
 	* Method : selectAll
 	* 작성자 : PC-17
 	* 변경이력 :
+	* @param map (page, pageSize)
 	* @return (post_id, board_id, post_title, post_cont, userId, post_time, post_parent, post_del)
 	* Method 설명 : 모든 게시글을 가져온다
 	*/

@@ -19,6 +19,14 @@ public class BoardService implements IBoardService {
 		sqlSession.close();
 		return list;
 	}
+	
+	@Override
+	public Map selectDetail(int board_id) {
+		SqlSession sqlSession = MybatisUtil.getSession();
+		Map map = dao.selectDetail(sqlSession, board_id);
+		sqlSession.close();
+		return map;
+	}
 
 	@Override
 	public int insert(Map map) {

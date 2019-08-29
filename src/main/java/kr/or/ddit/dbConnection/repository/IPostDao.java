@@ -11,6 +11,7 @@ public interface IPostDao {
 	* 작성자 : PC-17
 	* 변경이력 :
 	* @param sqlSession
+	* @param map (page, pageSize)
 	* @return (post_id, board_id, post_title, post_cont, userId, post_time, post_parent, post_del, gn)
 	* Method 설명 : 해당 페이지의 게시글을 가져온다
 	*/

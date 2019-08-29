@@ -11,22 +11,26 @@
         font-size: 48px;
     }
     
-    .login,
-    .logout {
+    header .login,
+    header .logout {
     	position: absolute;
     	right: 0;
     	top: 0;
     }
     
-    .login a,
-    .logout a {
-    	text-decoration: none;
+    header .login a,
+    header .logout a {
     	color: grey;
     	font-size: 16px;
     }
+    
+    header a {
+    	text-decoration: none;
+        color: #585858;
+    }
 </style>
 <header>
-	<span>${ param.title }</span>
+	<span><a href="${ cp }/">${ param.title }</a></span>
 	<c:choose>
 	<c:when test="${ user == null }">
 		<div class="login"><a href="${ cp }/login">login</a></div>

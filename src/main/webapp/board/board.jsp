@@ -23,15 +23,15 @@ request.setCharacterEncoding("UTF-8");
 </style>
 <body>
 	<jsp:include page="/common/header.jsp">
-		<jsp:param value="메인화면" name="title"/>
+		<jsp:param value="${ title }" name="title"/>
 	</jsp:include>
 	<jsp:include page="/common/left.jsp"></jsp:include>
 <!--     <section>Hello world</section> -->
     
-<%--     <jsp:include page="/util/pagination.jsp"> --%>
-<%--     	<jsp:param value="${ param.page }" name="page"/> --%>
-<%--     	<jsp:param value="${ param.pageSize }" name="pageSize"/> --%>
-<%--     	<jsp:param value="25" name="pageLength"/> --%>
-<%--     </jsp:include> --%>
+	<jsp:include page="/util/pagination.jsp">
+    	<jsp:param value="${ param.page }" name="page"/>
+    	<jsp:param value="${ param.pageSize }" name="pageSize"/>
+    	<jsp:param value="${ param.pageLength }" name="pageLength"/>
+    </jsp:include>
 </body>
 </html>

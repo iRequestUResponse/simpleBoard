@@ -26,7 +26,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="HashMap">
-		<selectKey keyProperty="post_id" resultType="int">
+		<selectKey keyProperty="post_id" resultType="int" order="BEFORE">
 			select seq_b_post.nextval from dual
 		</selectKey>
 		insert into B_POSTS (post_id, board_id, post_title, post_cont, userId, post_time, post_parent, post_del, gn)
