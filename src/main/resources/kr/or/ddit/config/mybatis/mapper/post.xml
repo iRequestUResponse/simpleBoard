@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+	<select id="selectAll" resultType="HashMap" parameterType="Map">
+	select * from
+		(
+		select  level, B_POSTS.*, rownum rn
+		from    B_POSTS
+		start with post_parent is null
+		connect by prior post_id = post_parent
+		order siblings by gn desc, post_id asc)
+	where rn between #{pageSize} * (#{page} - 1) + 1 and #{pageSize} * #{page}
+	</select>
+	
+	<select id="selectCnt" resultType="int">
+		select 	count(1) cnt
+		from	B_POSTS
+	</select>
+	
+	<select id="selectDetail" resultType="HashMap" parameterType="int">
+		select 	*
+		from	B_POSTS
+		where	post_id = #{post_id}
+	</select>
+	
+	<insert id="insert" parameterType="HashMap">
+		<selectKey keyProperty="post_id" resultType="int">
+			select seq_b_post.nextval from dual
+		</selectKey>
+		insert into B_POSTS (post_id, board_id, post_title, post_cont, userId, post_time, post_parent, post_del, gn)
+		values (#{post_id}, #{board_id}, #{post_title}, #{post_cont}, #{userId}, to_char(SYSDATE, 'yyyyMMddHH24miss'), #{post_parent, jdbcType=INTEGER}, 'N', #{gn})
+	</insert>
+	
+	<update id="update" parameterType="Map">
+		update	B_POSTS
+		set		post_title = #{post_title},
+				post_cont = #{post_cont}
+		where	post_id = #{post_id}
+	</update>
+	
+	<delete id="deleteByUpdate" parameterType="String">
+		update	B_POSTS
+		set		post_del = 'Y'
+		where	post_id = #{post_id}
+	</delete>
+</mapper>

@@ -1,10 +1,10 @@
-package kr.or.ddit.user.service;
+package kr.or.ddit.dbConnection.service;
 
 import org.apache.ibatis.session.SqlSession;
 
-import kr.or.ddit.user.model.User;
-import kr.or.ddit.user.repository.IUserDao;
-import kr.or.ddit.user.repository.UserDao;
+import kr.or.ddit.dbConnection.model.User;
+import kr.or.ddit.dbConnection.repository.IUserDao;
+import kr.or.ddit.dbConnection.repository.UserDao;
 import kr.or.ddit.util.MybatisUtil;
 
 public class UserService implements IUserService {

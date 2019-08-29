@@ -1,4 +1,4 @@
-package kr.or.ddit.user.model;
+package kr.or.ddit.dbConnection.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

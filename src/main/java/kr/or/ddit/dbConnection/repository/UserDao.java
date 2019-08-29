@@ -1,8 +1,8 @@
-package kr.or.ddit.user.repository;
+package kr.or.ddit.dbConnection.repository;
 
 import org.apache.ibatis.session.SqlSession;
 
-import kr.or.ddit.user.model.User;
+import kr.or.ddit.dbConnection.model.User;
 
 public class UserDao implements IUserDao {
 	/**

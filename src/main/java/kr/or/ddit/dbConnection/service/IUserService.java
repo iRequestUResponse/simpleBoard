@@ -1,6 +1,6 @@
-package kr.or.ddit.user.service;
+package kr.or.ddit.dbConnection.service;
 
-import kr.or.ddit.user.model.User;
+import kr.or.ddit.dbConnection.model.User;
 
 public interface IUserService {
 	/**

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+	<select id="selectAllOfPost" resultType="HashMap" parameterType="String">
+		select	*
+		from	B_COMMENTS
+		where	post_id = #{post_id}
+		and		cmt_del = 'N'
+		order by cmt_id DESC
+	</select>
+	
+	<insert id="insert" parameterType="HashMap">
+		<selectKey keyProperty="cmt_id" resultType="int">
+			select seq_b_comment.nextval from dual
+		</selectKey>
+		insert into B_COMMENTS (cmt_id, cmt_cont, cmt_time, post_id, userId, cmt_del)
+		values (#{cmt_id}, #{cmt_cont}, to_char(SYSDATE, 'yyyyMMddHH24miss'), #{post_id}, #{userId}, 'N')
+	</insert>
+	
+	<update id="deleteByUpdate" parameterType="int">
+		 update	B_COMMENTS
+		 set	cmt_del = 'Y'
+		 where	cmt_id = #{cmt_id}
+	</update>
+</mapper>

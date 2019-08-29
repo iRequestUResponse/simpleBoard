@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="att">
+	<select id="selectAllOfPost" resultType="HashMap" parameterType="int">
+		select	*
+		from	B_ATT_FILES
+		where	post_id = #{post_id}
+	</select>
+	
+	<insert id="insert" parameterType="HashMap">
+		<selectKey keyProperty="att_id" resultType="int">
+			select seq_b_att.nextval from dual
+		</selectKey>
+		insert into B_ATT_FILES (att_id, att_name, att_path, post_id)
+		values (#{att_id}, #{att_name}, #{att_path}, #{post_id})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from B_ATT_FILES
+		where att_id = #{add_id}
+	</delete>
+</mapper>
