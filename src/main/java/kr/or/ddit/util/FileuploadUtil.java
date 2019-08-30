@@ -55,13 +55,34 @@ public class FileuploadUtil {
 	* Method 설명 : 파일을 업로드할 경로를 조회한다
 	*/
 	public static String getPath() {
-		String basicPath = "e:\\upload\\";
-		String path = new SimpleDateFormat("yyyy\\MM\\").format(new Date());
+		String basicPath = getRoot();
+//		String path = new SimpleDateFormat("yyyy\\MM\\").format(new Date());
 		
-		File dir = new File(basicPath + path);
+//		File dir = new File(basicPath + path);
+		File dir = new File(basicPath);
 		if (!dir.exists()) dir.mkdirs();
 		
-		return basicPath + path;
+//		return basicPath + path;
+		return basicPath;
+	}
+	
+	public static String getPath(String root) {
+		String basicPath = root;
+//		String path = new SimpleDateFormat("yyyy\\MM\\").format(new Date());
+		
+//		File dir = new File(basicPath + path);
+		File dir = new File(basicPath);
+		if (!dir.exists()) dir.mkdirs();
+		
+//		return basicPath + path;
+		return basicPath;
 	}
 
+	public static String getRoot() {
+		return "e:\\upload\\";
+	}
+	
+	public static boolean isFile(String contentDisposition) {
+		return contentDisposition.indexOf("filename=\"") > -1;
+	}
 }

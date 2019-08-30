@@ -18,7 +18,7 @@ public interface ICommentService {
 	* Method : insert
 	* 작성자 : PC-17
 	* 변경이력 :
-	* @param map (cmt_id, cmt_cont, cmt_time, post_id, userId, cmt_del)
+	* @param map (cmt_cont, post_id, userId)
 	* @return cmt_id
 	* Method 설명 : 덧글 추가
 	*/

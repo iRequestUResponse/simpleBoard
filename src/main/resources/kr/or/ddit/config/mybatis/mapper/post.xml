@@ -31,7 +31,7 @@
 			select seq_b_post.nextval from dual
 		</selectKey>
 		insert into B_POSTS (post_id, board_id, post_title, post_cont, userId, post_time, post_parent, post_del, gn)
-		values (#{post_id}, #{board_id}, #{post_title}, #{post_cont}, #{userId}, to_char(SYSDATE, 'yyyyMMddHH24miss'), #{post_parent, jdbcType=INTEGER}, 'N', nvl(#{gn}, #{post_id}))
+		values (#{post_id}, #{board_id}, #{post_title}, #{post_cont}, #{userId}, SYSDATE, #{post_parent, jdbcType=INTEGER}, 'N', nvl(#{gn, jdbcType=INTEGER}, #{post_id}))
 	</insert>
 	
 	<update id="update" parameterType="Map">
@@ -41,7 +41,7 @@
 		where	post_id = #{post_id}
 	</update>
 	
-	<delete id="deleteByUpdate" parameterType="String">
+	<delete id="deleteByUpdate" parameterType="int">
 		update	B_POSTS
 		set		post_del = 'Y'
 		where	post_id = #{post_id}

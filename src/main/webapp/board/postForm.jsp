@@ -1,12 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <title>Document</title>
 </head>
-<body>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
 
+    section {
+		float: left;
+		width: calc(100% - 200px);
+    }
+</style>
+<body>
+	<jsp:include page="/common/header.jsp">
+		<jsp:param value="메인화면" name="title"/>
+	</jsp:include>
+	<jsp:include page="/common/left.jsp"></jsp:include>
+    <section>
+    	<div>
+    	<jsp:include page="/SE2/index.jsp">
+    	<jsp:param value="${ param.board_id }" name="board_id"/>
+    	</jsp:include>
+    	</div>
+    </section>
 </body>
 </html>

@@ -37,7 +37,7 @@ public interface IPostService {
 	* Method : insert
 	* 작성자 : PC-17
 	* 변경이력 :
-	* @param map (post_id, board_id, post_title, post_cont, userId, post_time, post_parent, post_del)
+	* @param map (board_id, post_title, post_cont, userId, post_parent?, gn?)
 	* @return post_id
 	* Method 설명 : 게시글을 추가한다
 	*/

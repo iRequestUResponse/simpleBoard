@@ -16,7 +16,7 @@
 			select seq_b_comment.nextval from dual
 		</selectKey>
 		insert into B_COMMENTS (cmt_id, cmt_cont, cmt_time, post_id, userId, cmt_del)
-		values (#{cmt_id}, #{cmt_cont}, to_char(SYSDATE, 'yyyyMMddHH24miss'), #{post_id}, #{userId}, 'N')
+		values (#{cmt_id}, #{cmt_cont}, SYSDATE, #{post_id}, #{userId}, 'N')
 	</insert>
 	
 	<update id="deleteByUpdate" parameterType="int">

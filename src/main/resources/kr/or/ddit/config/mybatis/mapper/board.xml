@@ -20,7 +20,7 @@
 			select seq_b_board.nextval from dual
 		</selectKey>
 		insert into B_BOARDS (board_id, board_name, board_use, userId, board_time)
-		values (#{board_id}, #{board_name}, #{board_use}, #{userId}, to_char(SYSDATE, 'yyyyMMddHH24miss'))
+		values (#{board_id}, #{board_name}, #{board_use}, #{userId}, SYSDATE)
 	</insert>
 	
 	<update id="update" parameterType="HashMap">

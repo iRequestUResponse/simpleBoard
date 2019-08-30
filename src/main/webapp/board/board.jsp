@@ -33,6 +33,7 @@ request.setCharacterEncoding("UTF-8");
     section table th:nth-child(2) {
     	width: 400px;
     }
+    
 </style>
 <body>
 	<jsp:include page="/common/header.jsp">
@@ -51,12 +52,25 @@ request.setCharacterEncoding("UTF-8");
 	    	</thead>
 	    	<tbody>
 	    	<c:forEach items="${ postList }" var="post">
+	    		<c:choose>
+	    		<c:when test="${ post.POST_DEL == 'N' }">
 	    		<tr class="post" data-postid="${ post.POST_ID }">
 	    			<td>${ post.POST_ID }</td>
-	    			<td>${ post.POST_TITLE }</td>
+	    			<td><c:forEach begin="2" end="${ post.LEVEL }" var="blank"> </c:forEach>
+	    			${ post.POST_TITLE }</td>
 	    			<td>${ post.USERID }</td>
 	    			<td data-time="${ post.POST_TIME }"></td>
 	    		</tr>
+	    		</c:when>
+	    		<c:otherwise>
+	    		<tr>
+	    			<td>-</td>
+	    			<td>[삭제된 게시글입니다]</td>
+	    			<td>-</td>
+	    			<td>-</td>
+	    		</tr>
+	    		</c:otherwise>
+	    		</c:choose>
 	    	</c:forEach>
 	    	<script>
 	    		var times = document.querySelectorAll('[data-time]');
@@ -76,10 +90,14 @@ request.setCharacterEncoding("UTF-8");
     	</table>
 	</section>
     
-	<jsp:include page="/util/pagination.jsp">
-    	<jsp:param value="${ param.page }" name="page"/>
-    	<jsp:param value="${ param.pageSize }" name="pageSize"/>
-    	<jsp:param value="${ pageLength }" name="pageLength"/>
-    </jsp:include>
+    <div class="wrapper">
+		<jsp:include page="/util/pagination.jsp">
+	    	<jsp:param value="${ param.page }" name="page"/>
+	    	<jsp:param value="${ param.pageSize }" name="pageSize"/>
+	    	<jsp:param value="${ pageLength }" name="pageLength"/>
+	    </jsp:include>
+	    
+	    <a href="${ cp }/postForm?board_id=${ param.board_id }">새글 등록</a>
+    </div>
 </body>
 </html>
