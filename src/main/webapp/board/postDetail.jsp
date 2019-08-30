@@ -37,7 +37,7 @@ request.setCharacterEncoding("UTF-8");
 </style>
 <body>
 	<jsp:include page="/common/header.jsp">
-		<jsp:param value="메인화면" name="title"/>
+		<jsp:param value="${ post.POST_TITLE }" name="title"/>
 	</jsp:include>
 	<jsp:include page="/common/left.jsp"></jsp:include>
     <section>
@@ -87,7 +87,7 @@ request.setCharacterEncoding("UTF-8");
     		</div>
    		</div> 
   		<div>
-  		<a>답글 쓰기</a> | 
+  		<a href="postForm?board_id=${ post.BOARD_ID }&post_parent=${ post.POST_ID }">답글 쓰기</a> | 
   		<c:if test="${ user.userId == post.USERID }">
   			<a href="${ cp }/postForm?board_id=${ post.BOARD_ID }&post_id=${ post.POST_ID }">글 수정</a> | 
   			<a href="${ cp }/postDelete?post_id=${ post.POST_ID }">글 삭제</a>

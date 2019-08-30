@@ -66,13 +66,34 @@ function validation(){
 	<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;">${ content }</textarea>
 	<div>첨부파일</div>
 	<div class="files">
-	<c:forEach var="f" begin="1" end="5">
-	<input type="file" name="attFile"> <br>
+	<c:forEach var="f" items="${ attList }">
+	<p class="attItem">${ f.ATT_NAME } <button class="attDel" data-attid="${ f.ATT_ID }" type="button">&times;</button> </p>
+<%-- 	${ f.ATT_ID } / ${ f.ATT_NAME } / ${ f.ATT_PATH } / ${ f.POST_ID }  <br> --%>
+	</c:forEach>
+	<c:forEach var="f" begin="1" end="${ 5 - attList.size() }">
+	<p class="attItem"> <input type="file" name="attFile"> </p>
 	</c:forEach>
 	</div>
 	<input type="hidden" value="${ param.board_id }" name="board_id">
 	<input type="hidden" value="${ param.post_id }" name="post_id">
+	<input type="hidden" value="${ param.post_parent }" name="post_parent">
+	<input type="hidden" name="delItems" id="delItems">
 </form>
 <input style="margin-top: 1em;" type="button" id="savebutton" value="서버전송" />
+<script type="text/javascript">
+var attDelList = document.querySelectorAll('.attDel');
+Array.prototype.forEach.call(attDelList, function(e) {
+	e.addEventListener('click', function() {
+		var fileId = this.dataset.attid;
+		var target = this.parentElement;
+		target.innerHTML = '<input type="file" name="attFile">';
+		var delItems = document.querySelector('#delItems');
+		
+		var list = JSON.parse('[' + delItems.value + ']');
+		list.push(fileId);
+		delItems.value = list.join(',');
+	});
+});
+</script>
 </body>
 </html>

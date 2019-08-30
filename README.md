@@ -29,6 +29,14 @@
 | POST_DEL    |          | CHAR(1)       |
 | GN          |          | NUMBER        |
 
+###B_ATT_FILES
+| 이름       | 널?       | 유형            | PK/FK |
+| -------- | -------- | ------------- | ----- |
+| ATT_ID   | NOT NULL | NUMBER        | PK    |
+| AT_NAME  |          | VARCHAR2(200) |
+| ATT_PATH |          | VARCHAR2(200) |
+| POST_ID  |          | NUMBER        | FK    |
+
 ###B_COMMENTS
 | 이름       | 널?       | 유형             | PK/FK |
 | -------- | -------- | -------------- | ----- |

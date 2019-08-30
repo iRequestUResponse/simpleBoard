@@ -1,11 +1,13 @@
 package kr.or.ddit.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.Clob;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -41,11 +43,16 @@ public class PostForm extends HttpServlet {
 		User user = (User) request.getSession().getAttribute("user");
 		
 		String board_id = request.getParameter("board_id");
-		String post_id = request.getParameter("post_id");
+		String __post_id = request.getParameter("post_id");
 		
-		if (post_id != null && !post_id.equals("")) {
+		// 글 수정일 경우
+		if (__post_id != null && !__post_id.equals("")) {
 			try {
-				Map post = postService.selectDetail(Integer.parseInt(post_id));				
+				int post_id = Integer.parseInt(__post_id);
+				Map post = postService.selectDetail(post_id);				
+				List<Map> attList = attService.selectAllOfPost(post_id);
+				request.setAttribute("attList", attList);
+				
 				request.setAttribute("title", post.get("POST_TITLE"));
 				Clob clob = (Clob) post.get("POST_CONT");
 				String content = "";
@@ -101,11 +108,26 @@ public class PostForm extends HttpServlet {
 		String __post_id = request.getParameter("post_id");
 		Integer post_id;
 		
+		String __post_parent = request.getParameter("post_parent");
+		
+		int attSize = 0;
+		
 		if (__post_id == null || "".equals(__post_id)) {
-			// 글 쓰기
+			// 답글일 경우
+			if (__post_parent != null && !__post_parent.equals("")) {
+				try {
+					int post_parent = Integer.parseInt(__post_parent);
+					Map parentPost = postService.selectDetail(post_parent);
+					map.put("post_parent", post_parent);
+					map.put("gn", parentPost.get("GN"));
+				} catch (NumberFormatException e) {
+				}
+			}
+			
+			// 새 글 쓰기일 경우(답글 포함)
 			postService.insert(map);
 			post_id = (Integer) map.get("post_id");
-		} else {
+		} else { // 글 수정일 경우
 			try {
 				post_id = Integer.parseInt(__post_id);
 			} catch (NumberFormatException e) {
@@ -117,12 +139,35 @@ public class PostForm extends HttpServlet {
 			post.put("post_title", title);
 			post.put("post_cont", content);
 			postService.update(post);
+			
+			List attList = attService.selectAllOfPost(post_id);
+			attSize = attList.size();
+		}
+		
+		String[] delItems = request.getParameter("delItems").split(",");
+		try {
+			for (String item : delItems) {
+				int att_id = Integer.parseInt(item);
+				List<Map> __attList = attService.selectAllOfPost(post_id);
+				Map att = null;
+				for (Map __att : __attList) {
+					if (att_id == Integer.valueOf(String.valueOf(__att.get("ATT_ID")))) {
+						att = __att;
+					}
+				}
+				File delFile = new File("e:\\upload\\" + att.get("ATT_PATH"));
+				logger.debug("{}", "e:\\upload\\" + att.get("ATT_PATH"));
+				delFile.delete();
+				attService.delete(att_id);
+			}
+		} catch (NumberFormatException e) {
+			logger.debug("error");
 		}
 		
 		Collection<Part> parts = request.getParts();
 		int fileNumber = 0;
 		for (Part part : parts) {
-			if (fileNumber >= 5) break;
+			if (fileNumber >= 5 - attSize) break;
 			String contentDisposition = part.getHeader("Content-Disposition");
 			if (!FileuploadUtil.isFile(contentDisposition)) continue;
 			

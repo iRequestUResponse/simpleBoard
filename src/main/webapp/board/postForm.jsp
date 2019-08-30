@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -23,8 +24,15 @@ request.setCharacterEncoding("UTF-8");
     }
 </style>
 <body>
+	<!-- DEBUG BEGIN -->
+   	<div style="position: fixed; left: 0; top: 0; z-index: 9999; background-color: #fff; color: #000;">
+    	<c:if test="${!empty param.post_parent}">
+    	${ param.post_parent }에 대한 답글입니다
+    	</c:if>
+   	</div>
+   	<!-- DEBUG END -->
 	<jsp:include page="/common/header.jsp">
-		<jsp:param value="메인화면" name="title"/>
+		<jsp:param value="글쓰기" name="title"/>
 	</jsp:include>
 	<jsp:include page="/common/left.jsp"></jsp:include>
     <section>

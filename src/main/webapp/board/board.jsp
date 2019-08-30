@@ -56,7 +56,7 @@ request.setCharacterEncoding("UTF-8");
 	    		<c:when test="${ post.POST_DEL == 'N' }">
 	    		<tr class="post" data-postid="${ post.POST_ID }">
 	    			<td>${ post.POST_ID }</td>
-	    			<td><c:forEach begin="2" end="${ post.LEVEL }" var="blank"> </c:forEach>
+	    			<td><c:forEach begin="2" end="${ post.LEVEL }" var="blank">&nbsp;&nbsp;&nbsp;&nbsp;</c:forEach>
 	    			${ post.POST_TITLE }</td>
 	    			<td>${ post.USERID }</td>
 	    			<td data-time="${ post.POST_TIME }"></td>
