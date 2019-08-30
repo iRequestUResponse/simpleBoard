@@ -79,28 +79,28 @@ public class Post extends HttpServlet {
 		request.getRequestDispatcher("/board/postDetail.jsp").forward(request, response);
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		User user = (User) request.getSession().getAttribute("user");
-		
-		if (user != null) {
-			String cmtCont = request.getParameter("commentContent");
-			Map cmt = new HashMap<String, Object>();
-			cmt.put("cmt_cont", cmtCont);
-			try {
-				cmt.put("post_id", Integer.parseInt(request.getParameter("post_id")));
-			} catch (NumberFormatException e) {
-				doGet(request, response);
-				return;
-			}
-			cmt.put("userId", user.getUserId());
-			
-			cmtService.insert(cmt);
-		}
-		
-		logger.debug("post_id: {}", request.getParameter("post_id"));
-		
-		doGet(request, response);
-	}
+//	@Override
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		request.setCharacterEncoding("UTF-8");
+//		User user = (User) request.getSession().getAttribute("user");
+//		
+//		if (user != null) {
+//			String cmtCont = request.getParameter("commentContent");
+//			Map cmt = new HashMap<String, Object>();
+//			cmt.put("cmt_cont", cmtCont);
+//			try {
+//				cmt.put("post_id", Integer.parseInt(request.getParameter("post_id")));
+//			} catch (NumberFormatException e) {
+//				doGet(request, response);
+//				return;
+//			}
+//			cmt.put("userId", user.getUserId());
+//			
+//			cmtService.insert(cmt);
+//		}
+//		
+//		logger.debug("post_id: {}", request.getParameter("post_id"));
+//		
+//		doGet(request, response);
+//	}
 }

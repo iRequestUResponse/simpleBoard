@@ -57,10 +57,16 @@ request.setCharacterEncoding("UTF-8");
     			<div class="comments">
 	    			<c:forEach items="${ cmtList }" var="cmt">
 	    			<p class="comment">
-	    			${ cmt.CMT_CONT }
-	    			<span class="cmtTime" data-time="${ cmt.CMT_TIME }"></span>
-	    			<c:if test="${ cmt.USERID == user.userId }">
-		    			<a>덧글 삭제</a>
+	    			<c:if test="${ cmt.CMT_DEL == 'N' }">
+		    			${ cmt.CMT_CONT }
+		    			<span class="cmtTime" data-time="${ cmt.CMT_TIME }"></span>
+		    			<c:if test="${ cmt.USERID == user.userId }">
+			    			<a href="${ cp }/comment?cmt_id=${ cmt.CMT_ID }&post_id=${ post.POST_ID }">덧글 삭제</a>
+		    			</c:if>
+	    			</c:if>
+	    			<c:if test="${ cmt.CMT_DEL == 'Y' }">
+		    			[삭제된 덧글입니다]
+		    			<span></span>
 	    			</c:if>
 	    			</p>
 	    			</c:forEach>
@@ -72,9 +78,10 @@ request.setCharacterEncoding("UTF-8");
 		    		});
 		    	</script>
     			<div class="writeComment">
-	    			<form method="POST">
+	    			<form action="/comment" method="POST">
 	    				<textarea rows="4" cols="100" name="commentContent"></textarea>
 	    				<button type="submit">덧글 등록</button>
+	    				<input type="hidden" name="post_id" value="${ post.POST_ID }">
 	    			</form>
     			</div>
     		</div>
