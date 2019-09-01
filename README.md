@@ -1,13 +1,13 @@
-#TABLES
-
-###B_USERS
+# TABLES
+  
+### B_USERS
 | 이름     | 널?       | 유형            | PK/FK |
 | ------ | -------- | ------------- | ----- |
 | USERID | NOT NULL | VARCHAR2(20)  | PK    |
 | USERNM |          | VARCHAR2(20)  |
 | PASS   |          | VARCHAR2(100) |
 
-###B_BOARDS
+### B_BOARDS
 | 이름         | 널?       | 유형            | PK/FK |
 | ---------- | -------- | ------------- | ----- |
 | BOARD_ID   | NOT NULL | NUMBER        | PK    |
@@ -16,7 +16,7 @@
 | USERID     |          | VARCHAR2(20)  | FK    |
 | BOARD_TIME |          | DATE          |
 
-###B_POSTS
+### B_POSTS
 | 이름          | 널?       | 유형            | PK/FK |
 | ----------- | -------- | ------------- | ----- |
 | POST_ID     | NOT NULL | NUMBER        | PK    |
@@ -29,7 +29,7 @@
 | POST_DEL    |          | CHAR(1)       |
 | GN          |          | NUMBER        |
 
-###B_ATT_FILES
+### B_ATT_FILES
 | 이름       | 널?       | 유형            | PK/FK |
 | -------- | -------- | ------------- | ----- |
 | ATT_ID   | NOT NULL | NUMBER        | PK    |
@@ -37,7 +37,7 @@
 | ATT_PATH |          | VARCHAR2(200) |
 | POST_ID  |          | NUMBER        | FK    |
 
-###B_COMMENTS
+### B_COMMENTS
 | 이름       | 널?       | 유형             | PK/FK |
 | -------- | -------- | -------------- | ----- |
 | CMT_ID   | NOT NULL | NUMBER         | PK    |
