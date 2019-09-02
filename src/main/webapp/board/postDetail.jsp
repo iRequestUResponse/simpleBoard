@@ -34,6 +34,10 @@ request.setCharacterEncoding("UTF-8");
     section .writeComment textarea {
     	resize: none;
     }
+    
+    section .cmt-constraint {
+    	text-align: right;
+    }
 </style>
 <body>
 	<jsp:include page="/common/header.jsp">
@@ -83,6 +87,17 @@ request.setCharacterEncoding("UTF-8");
 	    				<button type="submit">덧글 등록</button>
 	    				<input type="hidden" name="post_id" value="${ post.POST_ID }">
 	    			</form>
+	    			<div class="cmt-constraint">
+		    			<span id="textNumber"></span>/<span>500</span>
+	    			</div>
+	    			<script>
+	    				var cmtInputArea = document.forms[0].commentContent;
+	    				
+	    				var ss = 0;
+	    				cmtInputArea.addEventListener('input', function(event) {
+	    					if (this.value.length > 500) this.value = old;
+	    				});
+	    			</script>
     			</div>
     		</div>
    		</div> 

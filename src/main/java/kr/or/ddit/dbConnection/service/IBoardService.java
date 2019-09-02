@@ -16,6 +16,15 @@ public interface IBoardService {
 	List<Map> selectAll();
 	
 	/**
+	* Method : selectAllUsed
+	* 작성자 : PC-17
+	* 변경이력 :
+	* @return (board_id, board_name, board_use, userId, board_time)
+	* Method 설명 : 모든 사용중인 게시판 목록 가져오기
+	*/
+	List<Map> selectAllUsed();
+	
+	/**
 	* Method : selectBoard
 	* 작성자 : PC-17
 	* 변경이력 :

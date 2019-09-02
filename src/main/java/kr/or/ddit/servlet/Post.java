@@ -35,6 +35,8 @@ public class Post extends HttpServlet {
 	IAttService attService = new AttService();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User user = (User) request.getSession().getAttribute("user");
+		
 		String __post_id = request.getParameter("post_id");
 		
 		if (__post_id == null || __post_id.equals("")) {
@@ -51,6 +53,12 @@ public class Post extends HttpServlet {
 		}
 		
 		Map post = postService.selectDetail(post_id);
+		
+		if (user == null) {
+			String __board_id = String.valueOf(post.get("BOARD_ID"));
+			response.sendRedirect(request.getContextPath() + "/board?board_id=" + __board_id + "&page=1");
+			return;
+		}
 		
 		if ("Y".equals(post.get("POST_DEL"))) {
 			response.sendRedirect(request.getContextPath() + "/");

@@ -13,6 +13,11 @@ public class BoardDao implements IBoardDao {
 	}
 	
 	@Override
+	public List<Map> selectAllUsed(SqlSession sqlSession) {
+		return sqlSession.selectList("board.selectAllUsed");
+	}
+	
+	@Override
 	public Map selectDetail(SqlSession sqlSession, int board_id) {
 		return sqlSession.selectOne("board.selectDetail", board_id);
 	}

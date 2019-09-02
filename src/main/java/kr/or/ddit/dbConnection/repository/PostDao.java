@@ -13,8 +13,8 @@ public class PostDao implements IPostDao {
 	}
 	
 	@Override
-	public int selectCnt(SqlSession sqlSession) {
-		return sqlSession.selectOne("post.selectCnt");
+	public int selectCnt(SqlSession sqlSession, int board_id) {
+		return sqlSession.selectOne("post.selectCnt", board_id);
 	}
 
 	@Override

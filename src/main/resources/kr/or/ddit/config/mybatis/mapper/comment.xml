@@ -7,7 +7,7 @@
 		select	*
 		from	B_COMMENTS
 		where	post_id = #{post_id}
-		order by cmt_id DESC
+		order by cmt_id ASC
 	</select>
 	
 	<insert id="insert" parameterType="HashMap">

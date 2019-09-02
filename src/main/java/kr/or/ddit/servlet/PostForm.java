@@ -185,7 +185,7 @@ public class PostForm extends HttpServlet {
 			Map attMap = new HashMap<String, Object>();
 			attMap.put("post_id", post_id);
 			attMap.put("att_path", path);
-			attMap.put("att_name", fileName + extension);
+			attMap.put("att_name", fileName);
 			
 			attService.insert(attMap);
 		}

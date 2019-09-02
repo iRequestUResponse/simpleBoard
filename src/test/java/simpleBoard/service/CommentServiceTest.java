@@ -1,4 +1,4 @@
-package simpleBoard;
+package simpleBoard.service;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,55 +11,55 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import kr.or.ddit.dbConnection.repository.AttDao;
-import kr.or.ddit.dbConnection.repository.IAttDao;
+import kr.or.ddit.dbConnection.service.CommentService;
+import kr.or.ddit.dbConnection.service.ICommentService;
 import kr.or.ddit.util.MybatisUtil;
 
-public class AttDaoTest {
-	private SqlSession sqlSession;
-	private IAttDao attDao = new AttDao();
+public class CommentServiceTest {
+	private ICommentService service = new CommentService();
 	
 	@Before
 	public void setup() {
-		sqlSession = MybatisUtil.getSession();
-	}
-	
-	@After
-	public void teardown() {
-		sqlSession.rollback();
-		sqlSession.close();
 	}
 
+	@After
+	public void teardown() {
+	}
+	
 	@Test
 	public void selectAllOfPostTest() {
 		/***Given***/
-		List<Map> list = attDao.selectAllOfPost(sqlSession, 0);
+		List list = service.selectAllOfPost(1);
 
 		/***When***/
 
 		/***Then***/
-		assertEquals(0, list.size());
+		assertEquals(12, list.size());
 	}
 	
 	@Test
 	public void insertTest() {
 		/***Given***/
-		Map att = new HashMap<String, Object>();
-		
+		Map map = new HashMap();
+		map.put("cmt_cont", "테스트 덧글");
+		map.put("post_id", 1);
+		map.put("userId", "cony");
 
 		/***When***/
+		int cnt = service.insert(map);
 
 		/***Then***/
+		assertEquals(1, cnt);
 	}
-	
+
 	@Test
-	public void deleteTest() {
+	public void deleteByUpdateTest() {
 		/***Given***/
-		
 
 		/***When***/
+		int cnt = service.deleteByUpdate(3);
 
 		/***Then***/
+		assertEquals(1, cnt);
 	}
-
 }

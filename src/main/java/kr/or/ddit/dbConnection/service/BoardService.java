@@ -21,6 +21,14 @@ public class BoardService implements IBoardService {
 	}
 	
 	@Override
+	public List<Map> selectAllUsed() {
+		SqlSession sqlSession = MybatisUtil.getSession();
+		List<Map> list = dao.selectAllUsed(sqlSession);
+		sqlSession.close();
+		return list;
+	}
+	
+	@Override
 	public Map selectDetail(int board_id) {
 		SqlSession sqlSession = MybatisUtil.getSession();
 		Map map = dao.selectDetail(sqlSession, board_id);

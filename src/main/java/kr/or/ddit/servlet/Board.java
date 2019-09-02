@@ -47,7 +47,7 @@ public class Board extends HttpServlet {
 		int board_id = Integer.parseInt(__board_id);
 		int page = Integer.parseInt(__page);
 		int pageSize = Integer.parseInt(__pageSize);
-		int pageLength = (postService.selectCnt() + pageSize - 1) / pageSize;
+		int pageLength = (postService.selectCnt(board_id) + pageSize - 1) / pageSize;
 		
 		Map detail = boardService.selectDetail(board_id);
 		

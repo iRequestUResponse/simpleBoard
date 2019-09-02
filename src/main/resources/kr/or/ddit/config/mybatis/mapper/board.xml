@@ -9,6 +9,13 @@
 		order by board_id desc
 	</select>
 	
+	<select id="selectAllUsed" resultType="HashMap">
+		select	*
+		from	B_BOARDS
+		where	board_use = 'Y'
+		order by board_id desc
+	</select>
+	
 	<select id="selectDetail" resultType="HashMap" parameterType="int">
 		select 	*
 		from	B_BOARDS

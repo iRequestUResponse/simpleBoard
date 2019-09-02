@@ -23,9 +23,9 @@ public interface IPostDao {
 	* 변경이력 :
 	* @param sqlSession
 	* @return cnt
-	* Method 설명 : 모든 게시글의 수를 가져온다 
+	* Method 설명 : 해당 게시판의 모든 게시글의 수를 가져온다 
 	*/
-	int selectCnt(SqlSession sqlSession);
+	int selectCnt(SqlSession sqlSession, int board_id);
 	
 	/**
 	* Method : selectDetail

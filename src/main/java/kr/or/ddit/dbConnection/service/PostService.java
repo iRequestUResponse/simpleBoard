@@ -21,9 +21,9 @@ public class PostService implements IPostService {
 	}
 	
 	@Override
-	public int selectCnt() {
+	public int selectCnt(int board_id) {
 		SqlSession sqlSession = MybatisUtil.getSession();
-		int cnt = dao.selectCnt(sqlSession);
+		int cnt = dao.selectCnt(sqlSession, board_id);
 		sqlSession.close();
 		return cnt;
 	}

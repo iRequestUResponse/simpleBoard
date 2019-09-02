@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	IBoardService boardService = new BoardService();
-	List boardList = boardService.selectAll();
+	List boardList = boardService.selectAllUsed();
 	pageContext.setAttribute("boardList", boardList);
 %>
 <style>

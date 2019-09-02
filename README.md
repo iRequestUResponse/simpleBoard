@@ -33,7 +33,7 @@
 | 이름       | 널?       | 유형            | PK/FK |
 | -------- | -------- | ------------- | ----- |
 | ATT_ID   | NOT NULL | NUMBER        | PK    |
-| AT_NAME  |          | VARCHAR2(200) |
+| ATT_NAME |          | VARCHAR2(200) |
 | ATT_PATH |          | VARCHAR2(200) |
 | POST_ID  |          | NUMBER        | FK    |
 
