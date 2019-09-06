@@ -12,7 +12,7 @@
 <!-- Favicon -->
 <link rel="shortcut icon" href="favicon.ico" />
 
-<script src="/SE2/js/HuskyEZCreator.js"></script>
+<script src="${ cp }/SE2/js/HuskyEZCreator.js"></script>
 <script type="text/javascript">
 var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수로 사용하였지만, 지역변수로 사용해도 전혀 무관 함.
 
@@ -61,7 +61,7 @@ function validation(){
 </script>
 </head>
 <body>
-<form action="/postForm" method="post" id="frm" enctype="multipart/form-data">
+<form action="${ cp }/postForm" method="post" id="frm" enctype="multipart/form-data">
 	<div>제목 : <input name="title" value="${ title }"></div>
 	<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;">${ content }</textarea>
 	<div>첨부파일</div>
