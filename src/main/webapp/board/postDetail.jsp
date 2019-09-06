@@ -82,7 +82,7 @@ request.setCharacterEncoding("UTF-8");
 		    		});
 		    	</script>
     			<div class="writeComment">
-	    			<form action="/comment" method="POST">
+	    			<form action="${ cp }/comment" method="POST">
 	    				<textarea rows="4" cols="100" name="commentContent"></textarea>
 	    				<button type="submit">덧글 등록</button>
 	    				<input type="hidden" name="post_id" value="${ post.POST_ID }">
@@ -102,7 +102,7 @@ request.setCharacterEncoding("UTF-8");
     		</div>
    		</div> 
   		<div>
-  		<a href="postForm?board_id=${ post.BOARD_ID }&post_parent=${ post.POST_ID }">답글 쓰기</a> | 
+  		<a href="${ cp }/postForm?board_id=${ post.BOARD_ID }&post_parent=${ post.POST_ID }">답글 쓰기</a> | 
   		<c:if test="${ user.userId == post.USERID }">
   			<a href="${ cp }/postForm?board_id=${ post.BOARD_ID }&post_id=${ post.POST_ID }">글 수정</a> | 
   			<a href="${ cp }/postDelete?post_id=${ post.POST_ID }">글 삭제</a>

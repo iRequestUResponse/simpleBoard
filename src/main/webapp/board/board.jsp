@@ -82,7 +82,7 @@ request.setCharacterEncoding("UTF-8");
 	    		Array.prototype.forEach.call(posts, function(e) {
 	    			var postId = e.dataset.postid;
 	    			e.addEventListener('click', function() {
-	    				location.replace('/post?post_id=' + postId);
+	    				location.replace('${ cp }/post?post_id=' + postId);
 	    			});
 	    		});
 	    	</script>
